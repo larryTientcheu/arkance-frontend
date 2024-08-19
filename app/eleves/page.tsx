@@ -7,7 +7,7 @@ import { Eleve } from "@/types";
 import Link from "next/link";
 
 export default async function Page() {
-  const data = await get<Eleve[]>("/Eleves");
+  const data = await get<Eleve[]>("/Eleves", false);
 
   return (
     <div className="w-full">

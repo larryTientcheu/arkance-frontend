@@ -15,7 +15,7 @@ import { redirect } from "next/navigation";
 import { DeleteButton } from "./(components)/deleteButton";
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const data = await get<Eleve>(`/Eleves/${params.id}?notes=true`).catch(
+  const data = await get<Eleve>(`/Eleves/${params.id}?notes=true`, false).catch(
     (err) => {
       redirect("/");
     }
@@ -42,9 +42,10 @@ export default async function Page({ params }: { params: { id: string } }) {
           <div>
             {data.notes &&
               data.notes.map((note) => (
-                <div
+                <Link
                   key={note.id}
-                  className="border border-slate-200 p-2 my-2 rounded"
+                  href={`/eleves/${params.id}/note/${note.id}`}
+                  className="block border border-slate-200 p-2 my-2 transition-all rounded hover:bg-slate-100 cursor-pointer hover:shadow-md"
                 >
                   <h1 className="text-xl font-semibold flex justify-between items-center ">
                     {note.matiere.nom}{" "}
@@ -55,7 +56,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                       {note.valeur.toFixed(2)}
                     </span>{" "}
                   </p>
-                </div>
+                </Link>
               ))}
           </div>
         </CardContent>
@@ -66,7 +67,7 @@ export default async function Page({ params }: { params: { id: string } }) {
               </Link>
             </Button>
           
-          <DeleteButton></DeleteButton>
+          <DeleteButton id={params.id}></DeleteButton>
         </CardFooter>
       </Card>
     </div>

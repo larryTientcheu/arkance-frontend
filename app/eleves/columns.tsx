@@ -3,13 +3,24 @@
 import { Button } from "@/components/ui/button";
 import { Eleve } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
-import { EyeIcon, Trash2Icon } from "lucide-react";
+import { ArrowUpDown, EyeIcon, Trash2Icon } from "lucide-react";
 import Link from "next/link";
+import { DeleteButtonIcon } from "./[id]/(components)/deleteIconButton";
 
 export const columns: ColumnDef<Eleve>[] = [
   {
     accessorKey: "id",
-    header: "Id",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Id
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
   },
   {
     accessorKey: "nom",
@@ -34,11 +45,9 @@ export const columns: ColumnDef<Eleve>[] = [
 
       return (
         <div className="flex flex-row-reverse gap-4">
-		  <Button size="icon" variant="ghost" onClick={() => console.log(item.id)}>
-			<Link href="#"><Trash2Icon color="red" size={18} /></Link>
-          </Button>
+          <DeleteButtonIcon id={item.id} />
           <Button asChild size="icon" variant="link" >
-		  	<Link href={`/eleves/${item.id}`}><EyeIcon size={18} /></Link>
+            <Link href={`/eleves/${item.id}`}><EyeIcon size={18} /></Link>
           </Button>
         </div>
       );
