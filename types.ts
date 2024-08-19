@@ -29,9 +29,10 @@ export interface Eleve {
   classeId: number;
 }
 
-export interface Classes {
+export interface Classe {
   id: number;
   niveau: string;
   professeurId: number;
+  professeur: Professeur;
   eleves?: Eleve[];
 }

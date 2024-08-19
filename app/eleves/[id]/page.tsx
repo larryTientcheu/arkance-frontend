@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { del, get } from "@/lib/api";
-import { Classes, Eleve, Matiere } from "@/types";
+import { Classe, Eleve, Matiere } from "@/types";
 import { redirect } from "next/navigation";
 import { DeleteButton } from "./(components)/deleteButton";
 
@@ -19,7 +19,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       redirect("/");
     }
   );
-  const classes = await get<Classes[]>(`/Classes`);
+  const classes = await get<Classe[]>(`/Classes`);
 
   const studentsClass = classes.find((c) => c.id === data.classeId);
 
