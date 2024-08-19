@@ -1,3 +1,5 @@
+import { columns } from "@/app/eleves/columns";
+import { DataTable } from "@/components/data-table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,20 +32,11 @@ export default async function Page({ params }: { params: { id: string } }) {
             </span>
           </CardTitle>
           <CardDescription className="text-xl">
-          
+            {data.professeur.prenom} {" "} {data.professeur.nom}
           </CardDescription>
         </CardHeader>
         <CardContent className="max-h-[480px] overflow-y-auto">
-          <div>                            
-                  <h1 className="text-xl font-semibold flex justify-between items-center">
-                  Professeur :                    
-                  </h1>
-                 
-                    <span className="text-lg flex items-end">
-                    {data.professeur.prenom} {" "} {data.professeur.nom}
-                    </span>
-                         
-          </div>
+          {data.eleves && <DataTable columns={columns} data={data.eleves} />}
         </CardContent>
         <CardFooter className="flex flex-row-reverse gap-4">
           {/* <DeleteButton></DeleteButton> */}

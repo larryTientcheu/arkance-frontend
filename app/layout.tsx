@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-import { Work_Sans } from "next/font/google";
-import "./globals.css";
 import Nav from "@/components/nav";
+import type { Metadata } from "next";
+import { Space_Grotesk } from "next/font/google";
+import "./globals.css";
 
-const ws = Work_Sans({ subsets: ["latin"] });
+const ws = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "Arkance - GS",

@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { del, get } from "@/lib/api";
 import { Classe, Eleve, Matiere } from "@/types";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { DeleteButton } from "./(components)/deleteButton";
 
@@ -59,6 +60,12 @@ export default async function Page({ params }: { params: { id: string } }) {
           </div>
         </CardContent>
         <CardFooter className="flex flex-row-reverse gap-4">
+            <Button asChild variant="outline">
+              <Link href={`/eleves/${params.id}/note`}>
+                  Ajouter une note
+              </Link>
+            </Button>
+          
           <DeleteButton></DeleteButton>
         </CardFooter>
       </Card>
